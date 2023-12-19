@@ -1,0 +1,37 @@
+/**
+ * @param {Array} iterable
+ * @return {Promise<Array>}
+ */
+export default function promiseAll(iterable) {
+return new Promise((resolve, reject) =>{
+  const res = new Array(iterable.length);
+  let unresolvedResults = iterable.length;
+  if(unresolvedResults ===0){
+    resolve(res);
+    return;
+  }
+  iterable.forEach(async(arr, index) =>{
+    // Promise.resolve(arr).then((value) =>{
+    //   res[index] = value;
+    //   unresolvedResults -= 1;
+    //       if(unresolvedResults == 0){
+    //         resolve(results);
+    //       }
+    // }, (error) =>{
+    //   reject(error);
+    // })
+    try {
+      const value = await arr;
+      res[index] = value;
+      unresolvedResults -= 1;
+
+      if(unresolvedResults === 0){
+        resolve(res);
+      }
+
+    }catch(error){
+      reject(error);
+    }
+  })
+})
+}

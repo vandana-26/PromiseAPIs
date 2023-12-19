@@ -1,0 +1,44 @@
+//Success Case
+const p1 = Promise.resolve(30);
+const p2 = new Promise((resolve, reject) => {
+    setTimeout(() => {
+        resolve("Success")
+    }, 6000)
+});
+const p3 = "abc";
+
+Promise.all([p1, p2, p3]).then((values) => {
+    console.log(values);
+})
+
+//output after 6 seconds - [30,Success,abc]
+//Printed in same order as send in input
+
+//Failure Case
+
+const p4 = new Promise((resolve, reject) => {
+    setTimeout(() => {
+        resolve("success P4")
+    }, 6000)
+})
+
+const p5 = new Promise((resolve, reject) => {
+    setTimeout(() => {
+        reject("Reject P5")
+    }, 9000)
+})
+
+const p6 = new Promise((resolve, reject) => {
+    setTimeout(() => {
+        resolve("success P6")
+    }, 10000)
+})
+
+Promise.all([p4, p5, p6]).then((values) => {
+    console.log(values);
+})
+    .catch((err) => {
+        console.log(err);
+    })
+
+    //Output ->Reject P5
