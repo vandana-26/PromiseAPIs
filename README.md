@@ -13,6 +13,7 @@ For each outcome object, a status string is present. If the status is 'fulfilled
     Consider the same example of P1, P2, and P3.
     - Success Case: It's the same as `Promise.all()` when all Promises are fulfilled.
     - Failure Case: If P2 gets rejected in 1 second, `Promise.allSettled()` waits for all promises to be settled. It waits for 3 seconds in this case and gives us all the results, e.g., [val1, err, val3].
+    
 3. **Promise.race()**: This also takes iterables as input.
     - Success Case: It returns the value of the first settled Promise.
     - Failure Case: If a Promise fails, `Promise.race()` returns the error from the first settled Promise. It doesn't wait for other Promises to finish.
