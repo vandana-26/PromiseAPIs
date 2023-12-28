@@ -21,6 +21,7 @@ If the iterable passed is empty, the promise returned will be forever pending.
 If the iterable contains one or more non-promise value and/or an already settled promise, then Promise.race() will resolve to the first of these values found in the iterable.This also takes iterables as input.
     - Success Case: It returns the value of the first settled Promise, if its rejected or success.
     - Failure Case: If a Promise fails, `Promise.race()` returns the error from the first settled Promise. It doesn't wait for other Promises to finish.
+    
 4. **Promise.any()**: This again takes an array of Promises as input. It waits for the first fulfilled Promise.
     - Success Case: It returns the value of the first fulfilled Promise.
     - Failure Case: If all Promises get rejected, the result will be an AggregateError. This error will be an array of all the errors.
