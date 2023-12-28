@@ -1,0 +1,35 @@
+const P1 = Promise.resolve(40);
+const P2 = new Promise((resolve, reject) => {
+    setTimeout(() => {
+        resolve("Success");
+    }, 6000)
+})
+
+//output -> 40
+
+
+const P5 = new Promise((resolve, reject) => {
+    setTimeout(() => {
+        reject("Error");
+    }, 6000)
+})
+const P6 = new Promise((resolve, reject) => {
+    setTimeout(() => {
+        resolve("Success2");
+    }, 8000)
+})
+
+//Output -> Success2
+
+const P7 = new Promise((resolve, reject) => {
+    setTimeout(() => {
+        reject("Error");
+    }, 6000)
+})
+const P8 = new Promise((resolve, reject) => {
+    setTimeout(() => {
+        reject("Reject");
+    }, 8000)
+})
+
+//Output -> ["Error", "Reject"]

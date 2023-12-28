@@ -1,0 +1,26 @@
+/**
+ * @param {Array} iterable
+ * @return {Promise}
+ */
+export default function promiseAny(iterable) {
+  return new Promise((resolve, reject) =>{
+    if(iterable.length == 0)
+      reject(new AggregateError([]));
+      let res = new Array(iterable.length);
+      let rejectedCount = iterable.length;
+
+    iterable.forEach(async(val, index) =>{
+      try{
+        const value = await val;
+        resolve(value);
+     //   return;
+      }catch (err) {
+        res[index] = err;
+        rejectedCount -= 1;
+        if(rejectedCount == 0){
+          reject(new AggregateError(res));
+        }
+      }
+    })
+  })
+}
