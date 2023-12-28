@@ -14,8 +14,12 @@ For each outcome object, a status string is present. If the status is 'fulfilled
     - Success Case: It's the same as `Promise.all()` when all Promises are fulfilled.
     - Failure Case: If P2 gets rejected in 1 second, `Promise.allSettled()` waits for all promises to be settled. It waits for 3 seconds in this case and gives us all the results, e.g., [val1, err, val3].
     
-3. **Promise.race()**: This also takes iterables as input.
-    - Success Case: It returns the value of the first settled Promise.
+3. **Promise.race()**: The Promise.race() method returns a promise that fulfills or rejects as soon as one of the promises in an iterable fulfills or rejects, with the value or reason from that promise.
+
+If the iterable passed is empty, the promise returned will be forever pending.
+
+If the iterable contains one or more non-promise value and/or an already settled promise, then Promise.race() will resolve to the first of these values found in the iterable.This also takes iterables as input.
+    - Success Case: It returns the value of the first settled Promise, if its rejected or success.
     - Failure Case: If a Promise fails, `Promise.race()` returns the error from the first settled Promise. It doesn't wait for other Promises to finish.
 4. **Promise.any()**: This again takes an array of Promises as input. It waits for the first fulfilled Promise.
     - Success Case: It returns the value of the first fulfilled Promise.
